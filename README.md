@@ -6,8 +6,8 @@
 </p>
 <p align="center">
   <a href="mailto:justinochan16@gmail.com">Email</a> |
-  <a href="https://github.com/JustinoChan/Website">Portfolio</a> |
-  <a href="https://github.com/JustinoChan/AscensionAI">AscensionAI</a>
+  <a href="https://justinchan.dev">Portfolio</a> |
+  <a href="https://justinochan.github.io/AscensionAI/">AscensionAI</a>
 </p>
 
 ---
@@ -89,7 +89,7 @@ I am currently looking for software engineering roles where I can contribute to 
 
 ## Featured Project: AscensionAI
 
-[AscensionAI](https://github.com/JustinoChan/AscensionAI) is my most ambitious current project: an end-to-end reinforcement learning system for training an autonomous agent to play Slay the Spire against the live game process.
+[AscensionAI](https://justinochan.github.io/AscensionAI/) is my most ambitious current project: an end-to-end reinforcement learning system for training an autonomous agent to play Slay the Spire against the live game process.
 
 | System Piece | Details |
 |---|---|
@@ -102,6 +102,8 @@ I am currently looking for software engineering roles where I can contribute to 
 | Reliability work | Atomic checkpoint saves, resumable behavior-cloning progress, crash detection, stale-rollout rejection, worker relaunch, and stuck-state recovery |
 | Current status | Core pipeline is implemented; long-run convergence validation and evaluation are ongoing |
 
+Public project links: [site](https://justinochan.github.io/AscensionAI/) | [documentation](https://justinochan.github.io/AscensionAI/docs.html) | [dashboard](https://justinochan.github.io/AscensionAI/dashboard/) | [scripts](https://justinochan.github.io/AscensionAI/scripts.html) | [experiments](https://justinochan.github.io/AscensionAI/experiments/) | [architecture](https://justinochan.github.io/AscensionAI/architecture.md) | [technical writeup](https://justinochan.github.io/AscensionAI/AscensionAI_Technical_Writeup.md) | [source](https://github.com/JustinoChan/AscensionAI)
+
 AscensionAI is where I have been practicing the kind of engineering I enjoy most: turning a messy real-world interface into a structured learning problem, then making the system reliable enough to run for hours without constant babysitting.
 
 ---
@@ -110,8 +112,8 @@ AscensionAI is where I have been practicing the kind of engineering I enjoy most
 
 | Project | Stack | What it showcases | Links |
 |---|---|---|---|
-| AscensionAI | Python, PyTorch, Gymnasium, PPO, behavior cloning | RL systems, game automation, long-running training reliability, parallel workers | [repo](https://github.com/JustinoChan/AscensionAI) |
-| Personal Portfolio | Next.js, React, TypeScript, Tailwind CSS | Terminal-inspired UI, clean responsive pages, project writeups, profile/resume presentation | [repo](https://github.com/JustinoChan/Website) |
+| AscensionAI | Python, PyTorch, Gymnasium, PPO, behavior cloning | RL systems, game automation, long-running training reliability, parallel workers | [site](https://justinochan.github.io/AscensionAI/)<br>[docs](https://justinochan.github.io/AscensionAI/docs.html)<br>[dashboard](https://justinochan.github.io/AscensionAI/dashboard/)<br>[scripts](https://justinochan.github.io/AscensionAI/scripts.html)<br>[source](https://github.com/JustinoChan/AscensionAI) |
+| Personal Portfolio | Next.js, React, TypeScript, Tailwind CSS | Terminal-inspired UI, clean responsive pages, project writeups, profile/resume presentation | [site](https://justinchan.dev)<br>[source](https://github.com/JustinoChan/Website) |
 | Search Engine | Python, JSON, information retrieval | Indexed 56,000+ web pages and reduced average query response time by 35% through tokenization and algorithm optimization | [repo](https://github.com/Vincent10351/Indexer) |
 | Capstone Project Archive | React, Django, Firebase Auth, MySQL8 | Student project hosting app, REST API work, database integration, Agile team coordination | [repo](https://github.com/cpark50/capstone-archive) |
 | BitLink | Angular, TypeScript, Node.js, MongoDB, Passport.js, BCrypt | Full-stack social platform with real-time messaging, auth, posts, likes, and follows | [repo](https://github.com/SusLiu03/BitLink) |
@@ -151,8 +153,9 @@ Relevant coursework included algorithms, data structures, operating systems, sof
 | Profile Area | Highlights |
 |---|---|
 | Main profile | [github.com/JustinoChan](https://github.com/JustinoChan) |
-| Featured AI/RL work | [AscensionAI](https://github.com/JustinoChan/AscensionAI), an end-to-end reinforcement learning system for Slay the Spire |
-| Portfolio source | [Website](https://github.com/JustinoChan/Website), a Next.js profile and project showcase |
+| Featured AI/RL work | [AscensionAI](https://justinochan.github.io/AscensionAI/), an end-to-end reinforcement learning system for Slay the Spire |
+| AscensionAI resources | [documentation](https://justinochan.github.io/AscensionAI/docs.html), [dashboard](https://justinochan.github.io/AscensionAI/dashboard/), [scripts](https://justinochan.github.io/AscensionAI/scripts.html), [experiments](https://justinochan.github.io/AscensionAI/experiments/), [source](https://github.com/JustinoChan/AscensionAI) |
+| Portfolio | [justinchan.dev](https://justinchan.dev), a Next.js profile and project showcase |
 | Project history | Full-stack apps, information retrieval, database-backed web projects, and AI training infrastructure |
 | Most represented skills | Python, TypeScript, React, Next.js, Django, Node.js, SQL, PyTorch, Gymnasium, Git |
 
@@ -166,4 +169,5 @@ I am open to software engineering opportunities, collaboration, and technical co
 
 - Email: [justinochan16@gmail.com](mailto:justinochan16@gmail.com)
 - GitHub: [github.com/JustinoChan](https://github.com/JustinoChan)
-- Portfolio source: [github.com/JustinoChan/Website](https://github.com/JustinoChan/Website)
+- Portfolio: [justinchan.dev](https://justinchan.dev)
+- AscensionAI: [justinochan.github.io/AscensionAI](https://justinochan.github.io/AscensionAI/)
