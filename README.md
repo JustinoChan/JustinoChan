@@ -148,10 +148,15 @@ Relevant coursework included algorithms, data structures, operating systems, sof
 
 ## GitHub Snapshot
 
-<p align="left">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=JustinoChan&show_icons=true&theme=github_dark&hide_border=true&rank_icon=github" alt="Justin's GitHub stats" />
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=JustinoChan&layout=compact&theme=github_dark&hide_border=true" alt="Most used languages" />
-</p>
+| Profile Area | Highlights |
+|---|---|
+| Main profile | [github.com/JustinoChan](https://github.com/JustinoChan) |
+| Featured AI/RL work | [AscensionAI](https://github.com/JustinoChan/AscensionAI), an end-to-end reinforcement learning system for Slay the Spire |
+| Portfolio source | [Website](https://github.com/JustinoChan/Website), a Next.js profile and project showcase |
+| Project history | Full-stack apps, information retrieval, database-backed web projects, and AI training infrastructure |
+| Most represented skills | Python, TypeScript, React, Next.js, Django, Node.js, SQL, PyTorch, Gymnasium, Git |
+
+I keep the profile README static on purpose: no third-party stats images, no fragile external render services, and no broken cards when a provider is down.
 
 ---
 
