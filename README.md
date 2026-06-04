@@ -16,7 +16,7 @@
 
 Hi, I am Justin, a software engineer based in Brentwood, California. I graduated from the University of California, Irvine in March 2025 with a B.S. in Software Engineering, and I like building software that connects practical product work with deep technical systems.
 
-My work spans full-stack web applications, search and information retrieval, database-backed products, and AI systems. Recently I have been focused on AscensionAI, a reinforcement learning project that trains an autonomous agent to play Slay the Spire through behavior cloning, PPO fine-tuning, legal-action masking, and parallel rollout collection from live game instances.
+My work spans full-stack web applications, search and information retrieval, database-backed products, and AI systems. As of now my focus is split across two projects: **AscensionAI**, a reinforcement learning project that trains an autonomous agent to play Slay the Spire through behavior cloning, PPO fine-tuning, legal-action masking, and parallel rollout collection from live game instances; and the **[Job Application Agent](https://github.com/JustinoChan/Job-Application-Agent)**, a truth-constrained, proactive job-hunting agent that scrapes postings on a schedule, scores fit against my real experience, and on demand tailors resumes and cover letters that are audited against source-of-truth data so the system cannot fabricate experience.
 
 I am currently looking for software engineering roles where I can contribute to a strong team, ship clean and maintainable systems, and keep growing as an engineer.
 
@@ -113,6 +113,7 @@ AscensionAI is where I have been practicing the kind of engineering I enjoy most
 | Project | Stack | What it showcases | Links |
 |---|---|---|---|
 | AscensionAI | Python, PyTorch, Gymnasium, PPO, behavior cloning | RL systems, game automation, long-running training reliability, parallel workers | [site](https://justinochan.github.io/AscensionAI/)<br>[docs](https://justinochan.github.io/AscensionAI/docs.html)<br>[dashboard](https://justinochan.github.io/AscensionAI/dashboard/)<br>[scripts](https://justinochan.github.io/AscensionAI/scripts.html)<br>[source](https://github.com/JustinoChan/AscensionAI) |
+| Job Application Agent | Python, FastAPI, React, TypeScript, Playwright, Cloudflare | Truth-constrained resume and cover-letter tailoring, scheduled multi-source scraping, deterministic fit scoring, an audit gate that blocks fabricated claims, and a full-stack tracker dashboard | [repo](https://github.com/JustinoChan/Job-Application-Agent)<br>[architecture](https://github.com/JustinoChan/Job-Application-Agent#architecture)<br>[truth audit](https://github.com/JustinoChan/Job-Application-Agent#truth-audit)<br>[roadmap](https://github.com/JustinoChan/Job-Application-Agent#roadmap) |
 | Personal Portfolio | Next.js, React, TypeScript, Tailwind CSS | Terminal-inspired UI, clean responsive pages, project writeups, profile/resume presentation | [site](https://justinchan.dev)<br>[source](https://github.com/JustinoChan/Website) |
 | Search Engine | Python, JSON, information retrieval | Indexed 56,000+ web pages and reduced average query response time by 35% through tokenization and algorithm optimization | [repo](https://github.com/Vincent10351/Indexer) |
 | Capstone Project Archive | React, Django, Firebase Auth, MySQL8 | Student project hosting app, REST API work, database integration, Agile team coordination | [repo](https://github.com/cpark50/capstone-archive) |
@@ -133,6 +134,7 @@ AscensionAI is where I have been practicing the kind of engineering I enjoy most
 ## Current Focus
 
 - Running and evaluating larger AscensionAI PPO training experiments.
+- Building out the Job Application Agent: scheduled multi-source scraping, deterministic fit scoring, and a truth-audit gate that keeps tailored resumes and cover letters grounded in real experience.
 - Improving RL stability through reward analysis, fixed-seed evaluation, and checkpoint versioning.
 - Expanding my portfolio of production-style projects with strong documentation and clean UX.
 - Preparing for software engineering roles where I can contribute to full-stack, backend, AI infrastructure, or developer tooling work.
