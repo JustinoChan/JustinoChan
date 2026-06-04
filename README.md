@@ -94,13 +94,13 @@ I am currently looking for software engineering roles where I can contribute to 
 | System Piece | Details |
 |---|---|
 | Environment | Live Slay the Spire integration through ModTheSpire, BaseMod, CommunicationMod, and SpireComm |
-| Observation space | 530-dimensional structured encoder covering player state, screens, hand cards, monsters, powers, choices, relics, potions, deck profile, and map lookahead |
+| Observation space | 717-dimensional structured encoder covering player state, screens, hand cards, monsters (19 power slots + a 66-monster knowledge base), choices, relics, potions, deck profile, a per-card deck count vector, and map lookahead |
 | Action space | 134 discrete actions with legal-action masking so the policy only samples valid actions |
-| Model | Actor-critic MLP policy/value network, roughly 235K parameters, CPU-friendly inference |
-| Learning pipeline | Behavior cloning warm-start followed by PPO fine-tuning with GAE, entropy annealing, target-KL early stopping, and BC anchor loss |
+| Model | Actor-critic (512, 256, 256) GELU MLP, ~571K parameters, CPU-friendly inference |
+| Learning pipeline | Behavior cloning warm-start, PPO fine-tuning (GAE, entropy annealing, target-KL early stopping, BC anchor loss), and **learned deck-building** — card removal and upgrade are RL-controlled with a potential-based deck-quality reward |
 | Scaling strategy | Parallel rollout workers collect live games into checkpoint-tagged `.npz` files for a central offline trainer |
-| Reliability work | Atomic checkpoint saves, resumable behavior-cloning progress, crash detection, stale-rollout rejection, worker relaunch, and stuck-state recovery |
-| Current status | Core pipeline is implemented; long-run convergence validation and evaluation are ongoing |
+| Reliability work | Atomic checkpoint saves, stale-rollout rejection, stuck-state recovery, and a **self-healing headless cloud deployment** — per-worker watchdog, cron auto-resume + heartbeat, and Cloud Scheduler VM restart on spot preemption |
+| Current status | Trains continuously and hands-off on a GPU-less GCP spot VM; current focus is learned deck-building (new deck inputs integrating well), with a fixed-seed eval pending. Last benchmark (585-d model): 38.1% boss win rate, 20% Act 2 reach |
 
 Public project links: [site](https://justinochan.github.io/AscensionAI/) | [documentation](https://justinochan.github.io/AscensionAI/docs.html) | [dashboard](https://justinochan.github.io/AscensionAI/dashboard/) | [scripts](https://justinochan.github.io/AscensionAI/scripts.html) | [experiments](https://justinochan.github.io/AscensionAI/experiments/) | [architecture](https://justinochan.github.io/AscensionAI/architecture.md) | [technical writeup](https://justinochan.github.io/AscensionAI/AscensionAI_Technical_Writeup.md) | [source](https://github.com/JustinoChan/AscensionAI)
 
