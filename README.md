@@ -16,7 +16,7 @@
 
 Hi, I am Justin, a software engineer based in Brentwood, California. I graduated from the University of California, Irvine in March 2025 with a B.S. in Software Engineering, and I like building software that connects practical product work with deep technical systems.
 
-My work spans full-stack web applications, search and information retrieval, database-backed products, and AI systems. As of now my focus is split across two projects: **[AscensionAI](https://justinochan.github.io/AscensionAI/)**, a reinforcement learning project that trains an autonomous agent to play Slay the Spire through behavior cloning, PPO fine-tuning, legal-action masking, and parallel rollout collection from live game instances; and the **[Job Application Agent](https://github.com/JustinoChan/Job-Application-Agent)**, a truth-constrained, proactive job-hunting agent that scrapes postings on a schedule, scores fit against my real experience, and on demand tailors resumes and cover letters that are audited against source-of-truth data so the system cannot fabricate experience.
+My work spans full-stack web applications, search and information retrieval, database-backed products, and AI systems. As of now my focus is split across two projects: **[AscensionAI](https://justinochan.github.io/AscensionAI/)**, a reinforcement learning project that trains an autonomous agent to play Slay the Spire — it began on the live game (behavior cloning + PPO) and pivoted to a fast headless C++ simulator, where search-based combat plus a diagnose-first macro stack produced the project's first winning agents; and the **[Job Application Agent](https://github.com/JustinoChan/Job-Application-Agent)**, a truth-constrained, proactive job-hunting agent that scrapes postings on a schedule, scores fit against my real experience, and on demand tailors resumes and cover letters that are audited against source-of-truth data so the system cannot fabricate experience.
 
 I am currently looking for software engineering roles where I can contribute to a strong team, ship clean and maintainable systems, and keep growing as an engineer.
 
@@ -74,6 +74,8 @@ I am currently looking for software engineering roles where I can contribute to 
 ![GAE](https://img.shields.io/badge/GAE-0984E3?style=flat-square)
 ![Actor-Critic](https://img.shields.io/badge/Actor--Critic-00B894?style=flat-square)
 ![Action Masking](https://img.shields.io/badge/Action_Masking-D63031?style=flat-square)
+![Search / Planning](https://img.shields.io/badge/Search_%2F_Planning-6C5CE7?style=flat-square)
+![Expert Iteration](https://img.shields.io/badge/Expert_Iteration-00B894?style=flat-square)
 
 ### Tools and Workflow
 
@@ -89,18 +91,19 @@ I am currently looking for software engineering roles where I can contribute to 
 
 ## Featured Project: AscensionAI
 
-[AscensionAI](https://justinochan.github.io/AscensionAI/) is my most ambitious current project: an end-to-end reinforcement learning system for training an autonomous agent to play Slay the Spire against the live game process.
+[AscensionAI](https://justinochan.github.io/AscensionAI/) is my most ambitious current project: an end-to-end reinforcement learning system for training an autonomous agent to play Slay the Spire. It started against the live game, then moved onto a fast headless C++ simulator after the live-game pipeline plateaued — a controlled variant series showed combat *execution* was the wall, and playing it with search broke a long-standing plateau and produced the project's first wins.
 
 | System Piece | Details |
 |---|---|
-| Environment | Live Slay the Spire integration through ModTheSpire, BaseMod, CommunicationMod, and SpireComm |
-| Observation space | 717-dimensional structured encoder covering player state, screens, hand cards, monsters (19 power slots + a 66-monster knowledge base), choices, relics, potions, deck profile, a per-card deck count vector, and map lookahead |
-| Action space | 134 discrete actions with legal-action masking so the policy only samples valid actions |
-| Model | Actor-critic (512, 256, 256) GELU MLP, ~571K parameters, CPU-friendly inference |
-| Learning pipeline | Behavior cloning warm-start, PPO fine-tuning (GAE, entropy annealing, target-KL early stopping, BC anchor loss), and **learned deck-building** — card removal and upgrade are RL-controlled with a potential-based deck-quality reward |
-| Scaling strategy | Parallel rollout workers collect live games into checkpoint-tagged `.npz` files for a central offline trainer |
-| Reliability work | Atomic checkpoint saves, stale-rollout rejection, stuck-state recovery, and a **self-healing headless cloud deployment** — per-worker watchdog, cron auto-resume + heartbeat, and Cloud Scheduler VM restart on spot preemption |
-| Current status | Trains continuously and hands-off on a GPU-less GCP spot VM; current focus is learned deck-building (new deck inputs integrating well), with a fixed-seed eval pending. Last benchmark (585-d model): 38.1% boss win rate, 20% Act 2 reach |
+| Environment | Headless `sts_lightspeed` C++ simulator (Gymnasium `sts_gym` fork), Ironclad full runs at ~17,000 games/hour (~190× the live game); the live game is kept as a transfer-eval oracle |
+| Observation space | 1200-dimensional structured encoder (player state, screens, hand/draw/discard, monsters + decoded intents, relics, potions, deck profile, map lookahead), plus a 35-d decoded-combat feature block for in-fight decisions |
+| Action space | 128 discrete actions with legal-action masking so the policy only samples valid actions |
+| Combat | 1-ply replay search — each candidate action is rolled to the end of the fight (fights are deterministic given seed + action prefix) and the best is taken; boss win rate 75–88% vs ~44% for any feed-forward policy |
+| Non-combat | A from-scratch PPO policy with narrow, individually A/B-tested macro overrides (deck hygiene, AoE/draw role scorer, conservative + tempo-targeted smithing) |
+| Learning pipeline | Behavior-cloning warm-start, PPO fine-tuning (GAE, entropy annealing, target-KL early stopping, BC anchor loss), then **train-time search / expert iteration** after model-free PPO was shown to plateau on combat |
+| Scaling strategy | Process-separated rollout workers feed a central trainer over IPC; deterministic 150-fixed-seed evaluation for attributable, one-lever-at-a-time A/B tests |
+| Reliability work | Atomic checkpoint saves, stale-rollout rejection, retry-until-healthy worker supervision, and a **self-healing headless cloud deployment** — per-worker watchdog, cron auto-resume + heartbeat, and Cloud Scheduler VM restart on spot preemption |
+| Current status | **mainline_v3 (deployed): average floor 26.1 and 9 wins / 150 fixed seeds (6.0%)** — the project's first winning agents, up from a ~14.7-floor / 0-win live-game plateau across ~21,700 games. Next lever: cutting Act-2 HP attrition |
 
 Public project links: [site](https://justinochan.github.io/AscensionAI/) | [documentation](https://justinochan.github.io/AscensionAI/docs.html) | [dashboard](https://justinochan.github.io/AscensionAI/dashboard/) | [scripts](https://justinochan.github.io/AscensionAI/scripts.html) | [experiments](https://justinochan.github.io/AscensionAI/experiments/) | [architecture](https://justinochan.github.io/AscensionAI/architecture.md) | [technical writeup](https://justinochan.github.io/AscensionAI/AscensionAI_Technical_Writeup.md) | [source](https://github.com/JustinoChan/AscensionAI)
 
@@ -112,7 +115,7 @@ AscensionAI is where I have been practicing the kind of engineering I enjoy most
 
 | Project | Stack | What it showcases | Links |
 |---|---|---|---|
-| AscensionAI | Python, PyTorch, Gymnasium, PPO, behavior cloning | RL systems, game automation, long-running training reliability, parallel workers | [site](https://justinochan.github.io/AscensionAI/)<br>[docs](https://justinochan.github.io/AscensionAI/docs.html)<br>[dashboard](https://justinochan.github.io/AscensionAI/dashboard/)<br>[scripts](https://justinochan.github.io/AscensionAI/scripts.html)<br>[source](https://github.com/JustinoChan/AscensionAI) |
+| AscensionAI | Python, PyTorch, Gymnasium, PPO, search/planning | RL systems, search-based combat, diagnose-first experimentation, long-running training reliability, parallel workers | [site](https://justinochan.github.io/AscensionAI/)<br>[docs](https://justinochan.github.io/AscensionAI/docs.html)<br>[dashboard](https://justinochan.github.io/AscensionAI/dashboard/)<br>[scripts](https://justinochan.github.io/AscensionAI/scripts.html)<br>[source](https://github.com/JustinoChan/AscensionAI) |
 | Job Application Agent | Python, FastAPI, React, TypeScript, Playwright, Cloudflare | Truth-constrained resume and cover-letter tailoring, scheduled multi-source scraping, deterministic fit scoring, an audit gate that blocks fabricated claims, and a full-stack tracker dashboard | [repo](https://github.com/JustinoChan/Job-Application-Agent)<br>[architecture](https://github.com/JustinoChan/Job-Application-Agent#architecture)<br>[truth audit](https://github.com/JustinoChan/Job-Application-Agent#truth-audit)<br>[roadmap](https://github.com/JustinoChan/Job-Application-Agent#roadmap) |
 | Personal Portfolio | Next.js, React, TypeScript, Tailwind CSS | Terminal-inspired UI, clean responsive pages, project writeups, profile/resume presentation | [site](https://justinchan.dev)<br>[source](https://github.com/JustinoChan/Website) |
 | Search Engine | Python, JSON, information retrieval | Indexed 56,000+ web pages and reduced average query response time by 35% through tokenization and algorithm optimization | [repo](https://github.com/Vincent10351/Indexer) |
@@ -133,9 +136,9 @@ AscensionAI is where I have been practicing the kind of engineering I enjoy most
 
 ## Current Focus
 
-- Running and evaluating larger AscensionAI PPO training experiments.
+- Pushing AscensionAI past its first wins with diagnose-first, one-lever-at-a-time experiments evaluated at fixed-seed statistical power.
 - Building out the Job Application Agent: scheduled multi-source scraping, deterministic fit scoring, and a truth-audit gate that keeps tailored resumes and cover letters grounded in real experience.
-- Improving RL stability through reward analysis, fixed-seed evaluation, and checkpoint versioning.
+- Attacking the current Act-2 wall (entering fights too hurt) with targeted search and macro changes, each A/B-tested before it ships.
 - Expanding my portfolio of production-style projects with strong documentation and clean UX.
 - Preparing for software engineering roles where I can contribute to full-stack, backend, AI infrastructure, or developer tooling work.
 
